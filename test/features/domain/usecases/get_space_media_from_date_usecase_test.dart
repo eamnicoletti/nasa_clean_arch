@@ -13,7 +13,7 @@ class MockSpaceMediaRepository extends Mock implements ISpaceMediaRepository {}
 
 void main() {
   late GetSpaceMediaFromDateUsecase usecase;
-  late final repository;
+  late ISpaceMediaRepository repository;
 
   setUp(() {
     repository = MockSpaceMediaRepository();
@@ -40,20 +40,34 @@ void main() {
       mediaUrl:
           'https://apod.nasa.gov/apod/image/2212/art001e002132_apod1024.jpg');
 
-  final tNoParams = NoParams();
+  final tDate = DateTime(2022, 12, 10);
 
   test('should get space media entity for a given date from the repository',
       () async {
     // Stub a method before interacting with the mock.
-    when(() => repository.getSpaceMediaFromDate()).thenAnswer(
+    when(() => repository.getSpaceMediaFromDate(tDate)).thenAnswer(
         (_) async => const Right<Failure, SpaceMediaEntity>(tSpaceMedia));
 
-    final result = await usecase(tNoParams);
+    final result = await usecase(tDate);
 
     // Interact with the mock.
     expect(result, Right(tSpaceMedia));
 
     // Verify the interaction.
-    verify(() => repository.getSpaceMediaFromDate());
+    verify(() => repository.getSpaceMediaFromDate(tDate));
+  });
+
+  test('should return a ServerFailure when don\'t succeed', () async {
+    // Stub a method before interacting with the mock.
+    when(() => repository.getSpaceMediaFromDate(tDate)).thenAnswer(
+        (_) async => Left<Failure, SpaceMediaEntity>(ServerFailure()));
+
+    final result = await usecase(tDate);
+
+    // Interact with the mock.
+    expect(result, Left(ServerFailure()));
+
+    // Verify the interaction.
+    verify(() => repository.getSpaceMediaFromDate(tDate));
   });
 }

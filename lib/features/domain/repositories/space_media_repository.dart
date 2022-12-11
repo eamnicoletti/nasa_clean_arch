@@ -3,5 +3,6 @@ import 'package:nasa_clean_arch/core/errors/failure.dart';
 import 'package:nasa_clean_arch/features/domain/entities/space_media_entity.dart';
 
 abstract class ISpaceMediaRepository {
-  Future<Either<Failure, SpaceMediaEntity>> getSpaceMediaFromDate();
+  Future<Either<Failure, SpaceMediaEntity>> getSpaceMediaFromDate(
+      DateTime date);
 }
