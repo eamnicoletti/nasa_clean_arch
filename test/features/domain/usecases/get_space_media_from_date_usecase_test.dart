@@ -54,7 +54,7 @@ void main() {
     expect(result, Right(tSpaceMedia));
 
     // Verify the interaction.
-    verify(() => repository.getSpaceMediaFromDate(tDate));
+    verify(() => repository.getSpaceMediaFromDate(tDate)).called(1);
   });
 
   test('should return a ServerFailure when don\'t succeed', () async {
@@ -68,6 +68,6 @@ void main() {
     expect(result, Left(ServerFailure()));
 
     // Verify the interaction.
-    verify(() => repository.getSpaceMediaFromDate(tDate));
+    verify(() => repository.getSpaceMediaFromDate(tDate)).called(1);
   });
 }
