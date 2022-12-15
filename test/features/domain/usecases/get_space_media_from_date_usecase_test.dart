@@ -1,13 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:nasa_clean_arch/core/errors/failures.dart';
-import 'package:nasa_clean_arch/core/usecase/usecase.dart';
 import 'package:nasa_clean_arch/features/domain/entities/space_media_entity.dart';
 import 'package:nasa_clean_arch/features/domain/repositories/space_media_repository.dart';
 import 'package:nasa_clean_arch/features/domain/usecases/get_space_media_from_date_usecase.dart';
 
-//https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2022-12-08
+// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2022-12-08
 
 class MockSpaceMediaRepository extends Mock implements ISpaceMediaRepository {}
 
