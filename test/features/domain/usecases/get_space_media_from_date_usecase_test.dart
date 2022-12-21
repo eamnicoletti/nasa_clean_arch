@@ -31,7 +31,7 @@ void main() {
     final result = await usecase(tDate);
 
     // Interact with the mock.
-    expect(result, Right(tSpaceMedia));
+    expect(result, const Right(tSpaceMedia));
 
     // Verify the interaction.
     verify(() => repository.getSpaceMediaFromDate(tDate)).called(1);
@@ -49,5 +49,15 @@ void main() {
 
     // Verify the interaction.
     verify(() => repository.getSpaceMediaFromDate(tDate)).called(1);
+  });
+
+  test('should return a NullParamFailure when receives a null param', () async {
+    // Arrange
+    // Act
+    final result = await usecase(null);
+
+    // Assert
+    expect(result, Left(NullParamFailure()));
+    verifyNever(() => repository.getSpaceMediaFromDate(tDate));
   });
 }
