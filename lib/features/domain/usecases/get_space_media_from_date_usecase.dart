@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 
 import 'package:nasa_clean_arch/core/errors/failures.dart';
@@ -15,7 +17,10 @@ class GetSpaceMediaFromDateUsecase
   );
 
   @override
-  Future<Either<Failure, SpaceMediaEntity>> call(DateTime date) async {
-    return await repository.getSpaceMediaFromDate(date);
+  Future<Either<Failure, SpaceMediaEntity>> call(DateTime? date) async {
+    log("data: " + date.toString());
+    return date != null
+        ? await repository.getSpaceMediaFromDate(date)
+        : Left(NullParamFailure());
   }
 }

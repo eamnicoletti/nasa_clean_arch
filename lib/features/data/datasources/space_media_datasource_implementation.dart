@@ -2,24 +2,31 @@
 import 'dart:convert';
 
 import 'package:nasa_clean_arch/core/errors/exceptions.dart';
-import 'package:nasa_clean_arch/core/http_client/http_client.dart';
-import 'package:nasa_clean_arch/core/utils/converters/date_to_String_converter.dart';
-import 'package:nasa_clean_arch/core/utils/keys/nasa_api_keys.dart';
-import 'package:nasa_clean_arch/features/data/datasources/endpoints/nasa_endpoints.dart';
+import 'package:nasa_clean_arch/features/data/datasources/endpoints/space_endpoints.dart';
 import 'package:nasa_clean_arch/features/data/datasources/space_media_datasource.dart';
 import 'package:nasa_clean_arch/features/data/models/space_media_model.dart';
+import 'package:http/http.dart' as http;
 
-class NasaDatasourceImplementation implements ISpaceMediaDatasource {
-  final HttpClient client;
+import '../../../core/utils/converters/date_input_converter.dart';
 
-  NasaDatasourceImplementation(this.client);
+class SpaceMediaDatasouceImplementation implements ISpaceMediaDatasource {
+  final DateInputConverter converter;
+  final http.Client client;
+
+  SpaceMediaDatasouceImplementation({
+    required this.converter,
+    required this.client,
+  });
 
   @override
   Future<SpaceMediaModel> getSpaceMediaFromDate(DateTime date) async {
-    final response = await client.get(NasaEndpoints.apod(
-        NasaApiKeys.apiKey, DateToStringConverter.convert(date)));
+    final dateConverted = converter.format(date);
+    final response = await client.get(NasaEndpoints.getSpaceMedia(
+      'DEMO_KEY',
+      dateConverted,
+    ));
     if (response.statusCode == 200) {
-      return SpaceMediaModel.fromJson(jsonDecode(response.data));
+      return SpaceMediaModel.fromJson(json.decode(response.body));
     } else {
       throw ServerException();
     }

@@ -18,7 +18,7 @@ void main() {
     repository = SpaceMediaRepositoryImplementation(datasource);
   });
 
-  final tSpaceMediaModel = SpaceMediaModel(
+  const tSpaceMediaModel = SpaceMediaModel(
       description:
           '''A camera on board the uncrewed Orion spacecraft captured this view 
           on December 5 as Orion approached its return powered flyby of the Moon.
@@ -49,7 +49,7 @@ void main() {
     final result = await repository.getSpaceMediaFromDate(tDate);
 
     // Assert
-    expect(result, Right(tSpaceMediaModel));
+    expect(result, const Right(tSpaceMediaModel));
     verify(() => datasource.getSpaceMediaFromDate(tDate)).called(1);
   });
 

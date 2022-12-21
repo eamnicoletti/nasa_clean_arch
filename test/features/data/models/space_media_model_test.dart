@@ -7,13 +7,13 @@ import 'package:nasa_clean_arch/features/domain/entities/space_media_entity.dart
 import '../../mocks/space_media_mock.dart';
 
 void main() {
-  final tSpaceMediaModel = SpaceMediaModel(
+  const tSpaceMediaModel = SpaceMediaModel(
       description:
-          "On December 8 a full Moon and a full Mars were close, both bright and opposite the Sun in planet Earth's sky. In fact Mars was occulted, passing behind the Moon when viewed from some locations across Europe and North America.  Seen from the city of Kosice in eastern Slovakia, the lunar occultation of Mars happened just before sunrise. The tantalizing spectacle was recorded in this telescopic timelapse sequence of exposures. It took about an hour for the Red Planet to disappear behind the lunar disk and then reappear as a warm-hued full Moon, the last full Moon of 2022, sank toward the western horizon. The next lunar occultation of bright planet Mars will be in the new year on January 3, when the Moon is in a waxing gibbous phase. Lunar occultations are only ever visible from a fraction of the Earth's surface, though. The January 3 occultation of Mars will be visible from parts of the South Atlantic, southern Africa, and the Indian Ocean.",
+          'Meteors can be colorful. While the human eye usually cannot discern many colors, cameras often can. Pictured is a Quadrantids meteor captured by camera over Missouri, USA, early this month that was not only impressively bright, but colorful. The radiant grit, likely cast off by asteroid 2003 EH1, blazed a path across Earth\'s atmosphere.  Colors in meteors usually originate from ionized elements released as the meteor disintegrates, with blue-green typically originating from magnesium, calcium radiating violet, and nickel glowing green. Red, however, typically originates from energized nitrogen and oxygen in the Earth\'s atmosphere.  This bright meteoric fireball was gone in a flash -- less than a second -- but it left a wind-blown ionization trail that remained visible for several minutes.   APOD is available via Facebook: in English, Catalan and Portuguese',
       mediaType: 'image',
-      title: "Full Moon, Full Mars",
+      title: 'A Colorful Quadrantid Meteor',
       mediaUrl:
-          "https://apod.nasa.gov/apod/image/2212/MarsTrailsSMALL1024.jpg");
+          'https://apod.nasa.gov/apod/image/2102/MeteorStreak_Kuszaj_1080.jpg');
 
   test('should be a subclass of SpaceMediaEntity', () {
     expect(tSpaceMediaModel, isA<SpaceMediaEntity>());
@@ -34,10 +34,11 @@ void main() {
     // Arrange
     final expectedMap = {
       "explanation":
-          "On December 8 a full Moon and a full Mars were close, both bright and opposite the Sun in planet Earth's sky. In fact Mars was occulted, passing behind the Moon when viewed from some locations across Europe and North America.  Seen from the city of Kosice in eastern Slovakia, the lunar occultation of Mars happened just before sunrise. The tantalizing spectacle was recorded in this telescopic timelapse sequence of exposures. It took about an hour for the Red Planet to disappear behind the lunar disk and then reappear as a warm-hued full Moon, the last full Moon of 2022, sank toward the western horizon. The next lunar occultation of bright planet Mars will be in the new year on January 3, when the Moon is in a waxing gibbous phase. Lunar occultations are only ever visible from a fraction of the Earth's surface, though. The January 3 occultation of Mars will be visible from parts of the South Atlantic, southern Africa, and the Indian Ocean.",
+          "Meteors can be colorful. While the human eye usually cannot discern many colors, cameras often can. Pictured is a Quadrantids meteor captured by camera over Missouri, USA, early this month that was not only impressively bright, but colorful. The radiant grit, likely cast off by asteroid 2003 EH1, blazed a path across Earth's atmosphere.  Colors in meteors usually originate from ionized elements released as the meteor disintegrates, with blue-green typically originating from magnesium, calcium radiating violet, and nickel glowing green. Red, however, typically originates from energized nitrogen and oxygen in the Earth's atmosphere.  This bright meteoric fireball was gone in a flash -- less than a second -- but it left a wind-blown ionization trail that remained visible for several minutes.   APOD is available via Facebook: in English, Catalan and Portuguese",
       "media_type": "image",
-      "title": "Full Moon, Full Mars",
-      "url": "https://apod.nasa.gov/apod/image/2212/MarsTrailsSMALL1024.jpg"
+      "title": "A Colorful Quadrantid Meteor",
+      "url":
+          "https://apod.nasa.gov/apod/image/2102/MeteorStreak_Kuszaj_1080.jpg"
     };
 
     // Act

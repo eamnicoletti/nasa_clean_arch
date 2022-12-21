@@ -1,7 +1,7 @@
 import 'package:nasa_clean_arch/features/domain/entities/space_media_entity.dart';
 
 class SpaceMediaModel extends SpaceMediaEntity {
-  SpaceMediaModel(
+  const SpaceMediaModel(
       {required String description,
       required String mediaType,
       required String title,

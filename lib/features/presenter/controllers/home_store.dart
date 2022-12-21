@@ -7,17 +7,17 @@ class HomeStore extends NotifierStore<Failure, SpaceMediaEntity> {
   final GetSpaceMediaFromDateUsecase usecase;
 
   HomeStore(this.usecase)
-      : super(SpaceMediaEntity(
+      : super(const SpaceMediaEntity(
             description: '', mediaType: '', title: '', mediaUrl: ''));
 
-  getSpaceMediaFromDate(DateTime date) async {
-    executeEither(() =>
-        usecase(date) as Future<EitherAdapter<Failure, SpaceMediaEntity>>);
+  getSpaceMediaFromDate(DateTime? date) async {
+    // executeEither(() =>
+    //     usecase(date) as Future<EitherAdapter<Failure, SpaceMediaEntity>>);
 
-    // * executeEither() does the same as the four lines below:
-    // setLoading(true);
-    // final result = await usecase(date);
-    // result.fold((error) => setError(error), (success) => update(success));
-    // setLoading(false);
+    //* executeEither() does the same as the four lines below:
+    setLoading(true);
+    final result = await usecase(date);
+    result.fold((error) => setError(error), (success) => update(success));
+    setLoading(false);
   }
 }
