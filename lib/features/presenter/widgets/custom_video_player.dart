@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 import 'package:nasa_clean_arch/features/domain/entities/space_media_entity.dart';
@@ -22,7 +24,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (widget.spaceMedia.mediaUrl != null && isYoutubeVideo) {
+    if (isYoutubeVideo) {
       _loadYoutubeVideo(widget.spaceMedia);
     }
   }
@@ -31,7 +33,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
 
   void _loadYoutubeVideo(SpaceMediaEntity spaceMedia) {
     if (_youtubeController == null) {
-      final videoId = _filterVideoId(spaceMedia.mediaUrl!);
+      final videoId = _filterVideoId(spaceMedia.mediaUrl);
       _youtubeController = YoutubePlayerController(
         initialVideoId: videoId,
         params: const YoutubePlayerParams(
@@ -86,7 +88,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
                       style: TextStyle(color: Colors.white),
                     ),
                     TextButton(
-                      onPressed: () => _launchURL(widget.spaceMedia.mediaUrl!),
+                      onPressed: () => _launchURL(widget.spaceMedia.mediaUrl),
                       child: const Text(
                         'Open on browser >',
                         style: TextStyle(color: Colors.blue),

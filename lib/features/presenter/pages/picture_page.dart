@@ -14,6 +14,7 @@ import 'package:nasa_clean_arch/features/presenter/widgets/page_slider_up.dart';
 class PicturePage extends StatefulWidget {
   late final DateTime? dateSelected;
 
+  // ignore: prefer_const_constructors_in_immutables
   PicturePage({
     super.key,
     this.dateSelected,
@@ -21,11 +22,9 @@ class PicturePage extends StatefulWidget {
 
   PicturePage.fromArgs(dynamic arguments, {super.key}) {
     dateSelected = arguments['dateSelected'];
-    log("PicturePage.fromArgs: " + dateSelected.toString());
   }
 
   static void navigate(DateTime? dateSelected) {
-    log("navigate: $dateSelected");
     Modular.to.pushNamed(
       '/picture',
       arguments: {'dateSelected': dateSelected},
@@ -33,14 +32,15 @@ class PicturePage extends StatefulWidget {
   }
 
   @override
+  // ignore: library_private_types_in_public_api
   _PicturePageState createState() => _PicturePageState();
 }
 
+// ignore: deprecated_member_use
 class _PicturePageState extends ModularState<PicturePage, HomeStore> {
   @override
   void initState() {
     super.initState();
-    log("initState: " + widget.dateSelected.toString());
     store.getSpaceMediaFromDate(widget.dateSelected);
   }
 
@@ -71,11 +71,10 @@ class _PicturePageState extends ModularState<PicturePage, HomeStore> {
               title: spaceMedia.title,
               description: spaceMedia.description,
             ),
-            child: spaceMedia.mediaType == 'video' &&
-                    spaceMedia.mediaUrl != null
+            child: spaceMedia.mediaType == 'video'
                 ? CustomVideoPlayer(spaceMedia)
-                : spaceMedia.mediaType == 'image' && spaceMedia.mediaUrl != null
-                    ? ImageNetworkWithLoader(spaceMedia.mediaUrl!)
+                : spaceMedia.mediaType == 'image'
+                    ? ImageNetworkWithLoader(spaceMedia.mediaUrl)
                     : Container(),
           );
         },
