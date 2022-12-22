@@ -19,7 +19,7 @@ class PageSliderUp extends StatelessWidget {
           onSlideUp();
         }
       },
-      child: Container(
+      child: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Stack(
